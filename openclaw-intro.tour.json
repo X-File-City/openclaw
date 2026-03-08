@@ -14,7 +14,7 @@
     {
       "id": "core-source",
       "title": "Core Source Code",
-      "description": "The src/ directory is the heart of the project — about 50 subdirectories organized by domain. Key areas include the CLI wiring (cli/), the gateway server (gateway/), messaging channels, the agent framework, plugin SDK, provider integrations, and shared infrastructure.",
+      "description": "The src directory is the heart of the project — about 50 subdirectories organized by domain. Key areas include the CLI wiring, the gateway server, messaging channels, the agent framework, plugin SDK, provider integrations, and shared infrastructure.",
       "focusDirectory": "src",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -47,7 +47,7 @@
     {
       "id": "cli-and-gateway",
       "title": "CLI & Gateway Server",
-      "description": "The CLI (src/cli/) contains 200+ files for command wiring, option parsing, and dependency injection via createDefaultDeps. The gateway (src/gateway/) is the control plane — a WebSocket server handling authentication, RPC methods, plugin management, and real-time message routing between channels and LLM providers.",
+      "description": "The CLI (src/cli) contains 200+ files for command wiring, option parsing, and dependency injection via createDefaultDeps. The gateway (src/gateway/) is the control plane — a WebSocket server handling authentication, RPC methods, plugin management, and real-time message routing between channels and LLM providers.",
       "focusDirectory": "src",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -83,7 +83,7 @@
     {
       "id": "messaging-channels",
       "title": "Built-in Messaging Channels",
-      "description": "OpenClaw ships with 7 built-in messaging channels: Discord, Slack, Telegram, Signal, iMessage, LINE, and WhatsApp (web). Each channel directory contains its adapter implementation, message handling, and platform-specific logic. The shared channel infrastructure lives in src/channels/ and src/routing/.",
+      "description": "OpenClaw ships with 7 built-in messaging channels: Discord, Slack, Telegram, Signal, iMessage, LINE, and WhatsApp. Each channel directory contains its adapter implementation, message handling, and platform-specific logic. The shared channel infrastructure lives in src/channels/ and src/routing/.",
       "focusDirectory": "src",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -157,7 +157,7 @@
     {
       "id": "native-apps",
       "title": "Native Applications",
-      "description": "OpenClaw runs natively on macOS (SwiftUI menubar app with Sparkle updates), iOS (SwiftUI), and Android (Kotlin/Gradle). Shared Swift code lives in apps/shared/OpenClawKit/. The macOS app manages the gateway lifecycle, while mobile apps provide on-the-go access.",
+      "description": "OpenClaw runs natively on macOS as a SwiftUI menubar app, on iOS with SwiftUI, and on Android with Kotlin. Shared Swift code lives in the apps shared directory. The macOS app manages the gateway lifecycle, while mobile apps provide on-the-go access.",
       "focusDirectory": "apps",
       "colorMode": "fileTypes",
       "highlightLayers": [
@@ -204,7 +204,7 @@
     {
       "id": "docs-and-config",
       "title": "Documentation & Configuration",
-      "description": "Mintlify-powered docs live in docs/ covering channels, CLI, gateway, installation, plugins, and providers — with auto-generated Chinese translations in docs/zh-CN/. Configuration files at the root include Docker support (Dockerfile, docker-compose.yml), test configs (vitest.*.config.ts), build tooling (tsdown.config.ts, tsconfig.json), and the pnpm workspace definition.",
+      "description": "Mintlify-powered docs covering channels, CLI, gateway, installation, plugins, and providers — with auto-generated Chinese translations.",
       "focusDirectory": "docs",
       "colorMode": "fileTypes"
     },
