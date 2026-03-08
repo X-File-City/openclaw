@@ -1,0 +1,271 @@
+{
+  "id": "openclaw-intro",
+  "title": "OpenClaw Codebase Tour",
+  "description": "A guided walkthrough of the OpenClaw personal AI assistant — a multi-channel gateway with extensible messaging integrations, native apps, and an agent skill framework.",
+  "version": "1.0.0",
+  "steps": [
+    {
+      "id": "welcome-overview",
+      "title": "Welcome to OpenClaw",
+      "description": "OpenClaw is a personal AI assistant you run on your own devices. It connects messaging platforms (WhatsApp, Telegram, Slack, Discord, Signal, iMessage, and more) to LLM providers through a local gateway. The codebase is a TypeScript monorepo with native apps, 42 extensions, and 52 agent skills. Let's explore how it's organized.",
+      "focusDirectory": "",
+      "colorMode": "fileTypes"
+    },
+    {
+      "id": "core-source",
+      "title": "Core Source Code",
+      "description": "The src/ directory is the heart of the project — about 50 subdirectories organized by domain. Key areas include the CLI wiring (cli/), the gateway server (gateway/), messaging channels, the agent framework, plugin SDK, provider integrations, and shared infrastructure.",
+      "focusDirectory": "src",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "core-entry",
+          "name": "Entry Points",
+          "color": "#ef4444",
+          "items": [
+            { "path": "src/entry.ts", "type": "file" },
+            { "path": "src/index.ts", "type": "file" }
+          ],
+          "opacity": 0.8,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "core-infra",
+          "name": "Infrastructure",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "src/cli", "type": "directory" },
+            { "path": "src/gateway", "type": "directory" },
+            { "path": "src/infra", "type": "directory" },
+            { "path": "src/config", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "cli-and-gateway",
+      "title": "CLI & Gateway Server",
+      "description": "The CLI (src/cli/) contains 200+ files for command wiring, option parsing, and dependency injection via createDefaultDeps. The gateway (src/gateway/) is the control plane — a WebSocket server handling authentication, RPC methods, plugin management, and real-time message routing between channels and LLM providers.",
+      "focusDirectory": "src",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "cli-layer",
+          "name": "CLI Commands",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "src/cli", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "gateway-layer",
+          "name": "Gateway Server",
+          "color": "#8b5cf6",
+          "items": [
+            { "path": "src/gateway", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Explore the gateway server",
+          "target": "src/gateway"
+        }
+      ]
+    },
+    {
+      "id": "messaging-channels",
+      "title": "Built-in Messaging Channels",
+      "description": "OpenClaw ships with 7 built-in messaging channels: Discord, Slack, Telegram, Signal, iMessage, LINE, and WhatsApp (web). Each channel directory contains its adapter implementation, message handling, and platform-specific logic. The shared channel infrastructure lives in src/channels/ and src/routing/.",
+      "focusDirectory": "src",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "channels-shared",
+          "name": "Shared Channel Infra",
+          "color": "#6366f1",
+          "items": [
+            { "path": "src/channels", "type": "directory" },
+            { "path": "src/routing", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "channels-builtin",
+          "name": "Built-in Channels",
+          "color": "#10b981",
+          "items": [
+            { "path": "src/discord", "type": "directory" },
+            { "path": "src/slack", "type": "directory" },
+            { "path": "src/telegram", "type": "directory" },
+            { "path": "src/signal", "type": "directory" },
+            { "path": "src/imessage", "type": "directory" },
+            { "path": "src/line", "type": "directory" },
+            { "path": "src/web", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "extensions-plugins",
+      "title": "Extensions & Plugin System",
+      "description": "The extensions/ directory contains 42 plugin packages — additional messaging channels (MS Teams, Matrix, IRC, Twitch, Nostr), authentication providers, memory systems (LanceDB vector search), voice calling, diagnostics, and more. Each extension has its own package.json and openclaw.plugin.json metadata. The plugin SDK in src/plugin-sdk/ defines the contract.",
+      "focusDirectory": "extensions",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "ext-channels",
+          "name": "Channel Extensions",
+          "color": "#06b6d4",
+          "items": [
+            { "path": "extensions/msteams", "type": "directory" },
+            { "path": "extensions/matrix", "type": "directory" },
+            { "path": "extensions/irc", "type": "directory" },
+            { "path": "extensions/twitch", "type": "directory" },
+            { "path": "extensions/nostr", "type": "directory" },
+            { "path": "extensions/feishu", "type": "directory" },
+            { "path": "extensions/googlechat", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "ext-features",
+          "name": "Feature Extensions",
+          "color": "#f97316",
+          "items": [
+            { "path": "extensions/memory-core", "type": "directory" },
+            { "path": "extensions/memory-lancedb", "type": "directory" },
+            { "path": "extensions/voice-call", "type": "directory" },
+            { "path": "extensions/diagnostics-otel", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "native-apps",
+      "title": "Native Applications",
+      "description": "OpenClaw runs natively on macOS (SwiftUI menubar app with Sparkle updates), iOS (SwiftUI), and Android (Kotlin/Gradle). Shared Swift code lives in apps/shared/OpenClawKit/. The macOS app manages the gateway lifecycle, while mobile apps provide on-the-go access.",
+      "focusDirectory": "apps",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "app-macos",
+          "name": "macOS App",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "apps/macos", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "app-mobile",
+          "name": "Mobile Apps",
+          "color": "#10b981",
+          "items": [
+            { "path": "apps/ios", "type": "directory" },
+            { "path": "apps/android", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "app-shared",
+          "name": "Shared Code",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "apps/shared", "type": "directory" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "border"
+        }
+      ]
+    },
+    {
+      "id": "agent-skills",
+      "title": "Agent Skills Framework",
+      "description": "The skills/ directory contains 52 discrete capabilities the AI agent can invoke — from messaging (Discord, Slack, voice calls) to home automation (Sonos, Hue, Spotify), productivity (Notion, Obsidian, Apple Notes/Reminders), media processing (camera, video frames, TTS), and developer tools (GitHub, tmux, coding agent). Each skill is a self-contained module.",
+      "focusDirectory": "skills",
+      "colorMode": "fileTypes"
+    },
+    {
+      "id": "docs-and-config",
+      "title": "Documentation & Configuration",
+      "description": "Mintlify-powered docs live in docs/ covering channels, CLI, gateway, installation, plugins, and providers — with auto-generated Chinese translations in docs/zh-CN/. Configuration files at the root include Docker support (Dockerfile, docker-compose.yml), test configs (vitest.*.config.ts), build tooling (tsdown.config.ts, tsconfig.json), and the pnpm workspace definition.",
+      "focusDirectory": "docs",
+      "colorMode": "fileTypes"
+    },
+    {
+      "id": "full-architecture",
+      "title": "The Full Picture",
+      "description": "OpenClaw is a layered system: the CLI and gateway form the core, built-in channels provide messaging, extensions add platforms and features, skills give the agent capabilities, native apps deliver the UX, and docs tie it all together. The TypeScript monorepo uses pnpm workspaces, Vitest for testing, and tsdown for builds. Explore any building to dive deeper!",
+      "focusDirectory": "",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "arch-core",
+          "name": "Core (src/)",
+          "color": "#ef4444",
+          "items": [
+            { "path": "src", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "arch-extensions",
+          "name": "Extensions",
+          "color": "#06b6d4",
+          "items": [
+            { "path": "extensions", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "arch-apps",
+          "name": "Native Apps",
+          "color": "#10b981",
+          "items": [
+            { "path": "apps", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "arch-skills",
+          "name": "Agent Skills",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "skills", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "arch-docs",
+          "name": "Documentation",
+          "color": "#8b5cf6",
+          "items": [
+            { "path": "docs", "type": "directory" }
+          ],
+          "opacity": 0.5,
+          "renderStrategy": "border"
+        }
+      ]
+    }
+  ]
+}
